@@ -5,6 +5,31 @@
 #include <string.h>
 #include "Header.h"
 
+
+int postojiIDKlijenta(int id) {
+	FILE* file = fopen("klijenti.txt", "r+");
+	if (file == NULL) {
+		perror("Ne moze se otvoriti datoteka za vozila");
+		exit(1);
+	}
+
+	int postojeciIdKlijenta;
+	char ime[NAME];
+	char prezime[SURNAME];
+	char telefon[PHONE];
+	char email[MAIL];
+
+	while (fscanf(file, "%d %s %s %s %s", &postojeciIdKlijenta, ime, prezime, telefon, &email) == 5) {
+		if (postojeciIdKlijenta == id) {
+			fclose(file);
+			return 1;  // ID postoji
+		}
+	}
+
+	fclose(file);
+	return 0;  // ID ne postoji
+}
+
 // sigurno oslobadanje prethodno alocirane memorije i postavljanje pokazivaca na NULL kako bi se sprijecilo koristenje dangling pointers-a
 void sigurnoOslobodi(void** ptr) {
 	if (*ptr != NULL) {
@@ -35,20 +60,11 @@ void unosNovogKlijenta() {
 		return;
 	}
 
-	// Provjera postojanja ID-a
-	fseek(file, 0, SEEK_SET);  // Vracanje pokazivaca na pocetak datoteke
-	Klijent tempKlijent;
-	int idExists = 0;
-	while (fscanf(file, "%d %49s %49s %19s %49s", &tempKlijent.id, tempKlijent.ime, tempKlijent.prezime, tempKlijent.telefon, tempKlijent.email) == 5) {
-		if (tempKlijent.id == noviKlijent->id) {
-			idExists = 1;
-			break;
-		}
-	}
-	if (idExists) {
-		printf("Klijent s ID-om %d vec postoji.\n", noviKlijent->id);
+	// Provjera postoji li ID klijenta
+	if (postojiIDKlijenta(noviKlijent->id)) {
+		printf("Klijent s tim ID-om vec postoji.\n");
 		fclose(file);
-		sigurnoOslobodi((void**)&noviKlijent);
+		free(noviKlijent);
 		return;
 	}
 
