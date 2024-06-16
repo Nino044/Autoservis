@@ -38,47 +38,50 @@ void unosNovogVozila() {
 		exit(1);
 	}
 
-	Vozilo* vozila = (Vozilo*)malloc(sizeof(Vozilo));
-	if (vozila == NULL) {
-		perror("Neuspjesno zauzimanje memorije za popravak");
-		fclose(file);
-		exit(1);
-	}
+	int id;
+	char marka[MADE];
+	char model[MODEL];
+	char registracija[REGIST];
+	int godinaProizvodnje;
 
-	printf("Unesite ID: ");
-	if (scanf("%d", &vozila->id) != 1) {
+	printf("\nUnesite ID: ");
+	if (scanf("%d", &id) != 1) {
 		printf("Neispravan unos ID-a.\n");
+		fclose(file);
 		return;
 	}
 
-	// Provjera postoji li ID
-	if (postojiID(vozila->id)) {
-		printf("Vozilo s tim ID-om vec postoji.\n");
-		return;
-	}
-
+	printf("\nAko je marka vise od jedne rijeci koristiti '-'!\n");
 	printf("Unesite marku: ");
-	if (scanf("%s", &vozila->marka) != 1) {
+	if (scanf("%s", marka) != 1) {
 		printf("Neispravan unos marke.\n");
-		return;
-	}
-	printf("Unesite model: ");
-	if (scanf("%s", &vozila->model) != 1) {
-		printf("Neispravan unos modela.\n");
-		return;
-	}
-	printf("Unesite registraciju: ");
-	if (scanf("%s", &vozila->registracija) != 1) {
-		printf("Neispravan unos registracije.\n");
-		return;
-	}
-	printf("Unesite godinu proizvodnje: ");
-	if (scanf("%d", &vozila->godinaProizvodnje) != 1) {
-		printf("Neispravan unos godine proizvodnje.\n");
+		fclose(file);
 		return;
 	}
 
-	fprintf(file, "%d %s %s %s %d\n", &vozila->id, &vozila->marka, &vozila->model, &vozila->registracija, &vozila->godinaProizvodnje);
+	printf("\nAko je model vise od jedne rijeci koristiti '-'!\n");
+	printf("Unesite model: ");
+	if (scanf("%s", model) != 1) {
+		printf("Neispravan unos modela.\n");
+		fclose(file);
+		return;
+	}
+
+	printf("\nUnesite registraciju: ");
+	if (scanf("%s", registracija) != 1) {
+		printf("Neispravan unos registracije.\n");
+		fclose(file);
+		return;
+	}
+
+	printf("\nUnesite godinu proizvodnje: ");
+	if (scanf("%d", &godinaProizvodnje) != 1) {
+		printf("Neispravan unos godine proizvodnje.\n");
+		fclose(file);
+		return;
+	}
+
+	fprintf(file, "%d %s %s %s %d\n", id, marka, model, registracija, godinaProizvodnje);
 	fclose(file);
 
 	printf("Vozilo je uspjesno dodano.\n");
