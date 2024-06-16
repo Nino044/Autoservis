@@ -50,14 +50,10 @@ static void registracijaAdmin() {
     fprintf(file, "%s %s\n", admin.korisnickoIme, admin.lozinka);
     fclose(file);
 
-    printf("Administrator uspjesno registriran.\n");
+    printf("\nAdministrator uspjesno registriran.\n\n");
 }
 
 static int prijavaAdmin() {
-    if (prijavljen) {
-        printf("Administrator je vec prijavljen.\n");
-        return 1; // oznacavamo da je administrator prijavljen
-    }
 
     FILE* file = fopen("administratori.txt", "r");
     if (file == NULL) {
@@ -78,7 +74,7 @@ static int prijavaAdmin() {
         if (strcmp(admin.korisnickoIme, korisnickoIme) == 0 && strcmp(admin.lozinka, lozinka) == 0) {
             fclose(file);
             prijavljen = 1; // ako je prijavljen globalna varijabla se postavlja kao 1
-            printf("Prijava uspjesna.\n");
+            printf("\nPrijava uspjesna.\n");
             return 1;
         }
     }
@@ -89,13 +85,11 @@ static int prijavaAdmin() {
 }
 
 static void odjavaAdmin() {
-    if (!prijavljen) {
-        printf("Odjava nije moguca jer administrator nije prijavljen.\n");
-    }
-    else {
+    if (prijavljen) {
         printf("Odjava uspjesna.\n");
         prijavljen = 0; //nakon odjave globalnu varijablu vracamo na 0
     }
+    
 }
 
 inline void ocistiUlazniSpremnik() {

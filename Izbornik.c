@@ -11,7 +11,7 @@ void prikaziGlavniIzbornik() {
 	printf("1. Opcije klijenata\n");
 	printf("2. Opcije vozila\n");
 	printf("3. Opcije popravaka\n");
-	printf("4. Povratak na izbornik administratora\n");
+	printf("4. Odjava administratora\n");
 	printf("0. Izlaz\n");
 	printf("Odabir: ");
 }
@@ -61,8 +61,7 @@ int main() {
 	do {
 		printf("1. Registracija administratora\n");
 		printf("2. Prijava administratora\n");
-		printf("3. Odjava administratora\n");
-		printf("4. Izlaz\n");
+		printf("3. Izlaz\n");
 		printf("Izbor: ");
 
 		if (scanf("%d", &izbor) != 1) {
@@ -77,7 +76,7 @@ int main() {
 			break;
 		case 2:
 			if (globalnaPrijavaAdmin()) {
-				printf("Dobrodosli!\n");
+				printf("Dobrodosli!\n\n");
 				goto start;
 			}
 			else {
@@ -85,9 +84,6 @@ int main() {
 			}
 			break;
 		case 3:
-			globalnaOdjavaAdmin();
-			goto pocetak;
-		case 4:
 			printf("Izlaz.\n");
 			return 0;
 			break;
@@ -213,8 +209,8 @@ int main() {
 			return 0;
 			break;
 		case 4:
+			globalnaOdjavaAdmin();
 			goto pocetak;
-			break;
 		case 0:
 			printf("Izlaz iz programa.\n");
 			return 0;
