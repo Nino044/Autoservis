@@ -32,52 +32,53 @@ int postojiID(int id) {
 
 void unosNovogVozila() {
 	
-	int id;
-	char marka[MADE];
-	char model[MODEL];
-	char registracija[REGIST];
-	int godinaProizvodnje;
+	FILE* file = fopen("vozila.txt", "a");
+	if (file == NULL) {
+		perror("Ne moze se otvoriti datoteka za popravke");
+		exit(1);
+	}
+
+	Vozilo* vozila = (Vozilo*)malloc(sizeof(Vozilo));
+	if (vozila == NULL) {
+		perror("Neuspjesno zauzimanje memorije za popravak");
+		fclose(file);
+		exit(1);
+	}
 
 	printf("Unesite ID: ");
-	if (scanf("%d", &id) != 1) {
+	if (scanf("%d", &vozila->id) != 1) {
 		printf("Neispravan unos ID-a.\n");
 		return;
 	}
 
 	// Provjera postoji li ID
-	if (postojiID(id)) {
+	if (postojiID(vozila->id)) {
 		printf("Vozilo s tim ID-om vec postoji.\n");
 		return;
 	}
 
 	printf("Unesite marku: ");
-	if (scanf("%s", marka) != 1) {
+	if (scanf("%s", &vozila->marka) != 1) {
 		printf("Neispravan unos marke.\n");
 		return;
 	}
 	printf("Unesite model: ");
-	if (scanf("%s", model) != 1) {
+	if (scanf("%s", &vozila->model) != 1) {
 		printf("Neispravan unos modela.\n");
 		return;
 	}
 	printf("Unesite registraciju: ");
-	if (scanf("%s", registracija) != 1) {
+	if (scanf("%s", &vozila->registracija) != 1) {
 		printf("Neispravan unos registracije.\n");
 		return;
 	}
 	printf("Unesite godinu proizvodnje: ");
-	if (scanf("%d", &godinaProizvodnje) != 1) {
+	if (scanf("%d", &vozila->godinaProizvodnje) != 1) {
 		printf("Neispravan unos godine proizvodnje.\n");
 		return;
 	}
 
-	FILE* file = fopen("vozila.txt", "a");
-	if (file == NULL) {
-		perror("Ne moze se otvoriti datoteka za vozila");
-		exit(1);
-	}
-
-	fprintf(file, "%d %s %s %s %d\n", id, marka, model, registracija, godinaProizvodnje);
+	fprintf(file, "%d %s %s %s %d\n", &vozila->id, &vozila->marka, &vozila->model, &vozila->registracija, &vozila->godinaProizvodnje);
 	fclose(file);
 
 	printf("Vozilo je uspjesno dodano.\n");
