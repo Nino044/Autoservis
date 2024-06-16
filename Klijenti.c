@@ -62,7 +62,7 @@ void unosNovogKlijenta() {
 
 	// Provjera postoji li ID klijenta
 	if (postojiIDKlijenta(noviKlijent->id)) {
-		printf("Klijent s tim ID-om vec postoji.\n");
+		printf("\nKlijent s tim ID-om vec postoji!\n");
 		fclose(file);
 		free(noviKlijent);
 		return;

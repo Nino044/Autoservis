@@ -51,6 +51,12 @@ void unosNovogVozila() {
 		return;
 	}
 
+	if (postojiID(id)) {
+		printf("\nKlijent s tim ID-om vec postoji!\n");
+		fclose(file);
+		return;
+	}
+
 	printf("\nAko je marka vise od jedne rijeci koristiti '-'!\n");
 	printf("Unesite marku: ");
 	if (scanf("%s", marka) != 1) {

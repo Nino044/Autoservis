@@ -57,7 +57,7 @@ void noviPopravak() {
 
 	// Provjera postoji li ID popravka
 	if (postojiIDPopravka(popravak->id)) {
-		printf("Popravak s tim ID-om vec postoji.\n");
+		printf("\nPopravak s tim ID-om vec postoji!\n");
 		fclose(file);
 		free(popravak);
 		return;
