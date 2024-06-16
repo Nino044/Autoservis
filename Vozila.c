@@ -177,16 +177,16 @@ void sortirajVozila() {
 
 	Vozilo* vozila = NULL;
 	int brojVozila = 0;
-	Vozilo tempVozilo;
+	Vozilo sortVozilo;
 
-	while (fscanf(file, "%d %19s %49s %14s %d", &tempVozilo.id, tempVozilo.marka, tempVozilo.model, tempVozilo.registracija, &tempVozilo.godinaProizvodnje) == 5) {
+	while (fscanf(file, "%d %19s %49s %14s %d", &sortVozilo.id, sortVozilo.marka, sortVozilo.model, sortVozilo.registracija, &sortVozilo.godinaProizvodnje) == 5) {
 		vozila = realloc(vozila, sizeof(Vozilo) * (brojVozila + 1));
 		if (vozila == NULL) {
 			perror("Ne moze se alocirati memorija za vozila");
 			fclose(file);
 			return;
 		}
-		vozila[brojVozila++] = tempVozilo;
+		vozila[brojVozila++] = sortVozilo;
 	}
 	fclose(file);
 
@@ -217,16 +217,16 @@ void azurirajRegistracijuVozila() {
 
 	Vozilo* vozila = NULL;
 	int brojVozila = 0;
-	Vozilo tempVozilo;
+	Vozilo azurVozilo;
 
-	while (fscanf(file, "%d %49s %49s %14s %d", &tempVozilo.id, tempVozilo.marka, tempVozilo.model, tempVozilo.registracija, &tempVozilo.godinaProizvodnje) == 5) {
+	while (fscanf(file, "%d %49s %49s %14s %d", &azurVozilo.id, azurVozilo.marka, azurVozilo.model, azurVozilo.registracija, &azurVozilo.godinaProizvodnje) == 5) {
 		vozila = realloc(vozila, sizeof(Vozilo) * (brojVozila + 1));
 		if (vozila == NULL) {
 			perror("Neuspjesno zauzimanje memorije za vozila");
 			fclose(file);
 			return;
 		}
-		vozila[brojVozila++] = tempVozilo;
+		vozila[brojVozila++] = azurVozilo;
 	}
 	fclose(file);
 
@@ -296,16 +296,16 @@ void obrisiVozilo(int id) {
 
 	Vozilo* vozila = NULL;
 	int brojVozila = 0;
-	Vozilo tempVozilo;
+	Vozilo delVozilo;
 
-	while (fscanf(file, "%d %49s %49s %14s %d", &tempVozilo.id, tempVozilo.marka, tempVozilo.model, tempVozilo.registracija, &tempVozilo.godinaProizvodnje) == 5) {
+	while (fscanf(file, "%d %49s %49s %14s %d", &delVozilo.id, delVozilo.marka, delVozilo.model, delVozilo.registracija, &delVozilo.godinaProizvodnje) == 5) {
 		vozila = realloc(vozila, sizeof(Vozilo) * (brojVozila + 1));
 		if (vozila == NULL) {
 			perror("Ne može se alocirati memorija za vozila");
 			fclose(file);
 			return;
 		}
-		vozila[brojVozila++] = tempVozilo;
+		vozila[brojVozila++] = delVozilo;
 	}
 	fclose(file);
 
