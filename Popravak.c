@@ -125,7 +125,6 @@ void ispisPopravaka() {
 		printf("Cijena: %.2f EUR\n", popravak.cijena);
 		printf("Datum: %s\n", popravak.datum);
 		printf("Koristeni dijelovi: %s\n", popravak.dijelovi);
-		printf("----------------------------------------------------\n");
 	}
 
 	fclose(file);
