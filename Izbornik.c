@@ -88,7 +88,7 @@ pocetak:
 			return 0;
 			break;
 		default:
-			printf("Neispravan izbor. Pokusajte ponovno.\n");
+			printf("\nNeispravan izbor. Pokusajte ponovno.\n");
 		}
 	} while (izbor != 3);
 
@@ -96,9 +96,9 @@ start:
 	do {
 		prikaziGlavniIzbornik();
 		while (scanf("%d", &izbor) != 1) {
-			printf("Neispravan unos. Molimo unesite broj.\n");
+			printf("\nNeispravan unos. Molimo unesite broj.\n");
 			while (getchar() != '\n'); // cistim ulazni bafer
-			continue;
+			goto start;
 		}
 		switch (izbor) {
 		case 1:
