@@ -31,7 +31,7 @@ int postojiID(int id) {
 }
 
 void unosNovogVozila() {
-	
+
 	FILE* file = fopen("vozila.txt", "a");
 	if (file == NULL) {
 		perror("Ne moze se otvoriti datoteka za popravke");
@@ -106,8 +106,8 @@ void ispisiVozilaHelper(FILE* file) {
 void ispisiVozila() {
 	FILE* file = fopen("vozila.txt", "r");
 	if (file == NULL) {
-		perror("Ne moze se otvoriti datoteka za vozila");
-		exit(1);
+		perror("\nDatoteka ne postoji!");
+		return;
 	}
 
 	printf("+----+------------------------------+------------------------------+---------------+--------------------+\n");
@@ -290,7 +290,7 @@ void obrisiVozila() {
 void obrisiVozilo(int id) {
 	FILE* file = fopen("vozila.txt", "r");
 	if (file == NULL) {
-		perror("Ne može se otvoriti datoteka za èitanje vozila");
+		perror("Ne moze se otvoriti datoteka za èitanje vozila");
 		return;
 	}
 
@@ -301,7 +301,7 @@ void obrisiVozilo(int id) {
 	while (fscanf(file, "%d %49s %49s %14s %d", &delVozilo.id, delVozilo.marka, delVozilo.model, delVozilo.registracija, &delVozilo.godinaProizvodnje) == 5) {
 		vozila = realloc(vozila, sizeof(Vozilo) * (brojVozila + 1));
 		if (vozila == NULL) {
-			perror("Ne može se alocirati memorija za vozila");
+			perror("Ne moze se alocirati memorija za vozila");
 			fclose(file);
 			return;
 		}
@@ -329,7 +329,7 @@ void obrisiVozilo(int id) {
 
 	file = fopen("vozila.txt", "w");
 	if (file == NULL) {
-		perror("Ne može se otvoriti datoteka za pisanje vozila");
+		perror("Ne moze se otvoriti datoteka za pisanje vozila");
 		free(vozila);
 		return;
 	}

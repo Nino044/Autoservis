@@ -106,7 +106,7 @@ void noviPopravak() {
 void ispisPopravaka() {
 	FILE* file = fopen("popravci.txt", "r");
 	if (file == NULL) {
-		perror("Ne moze se otvoriti datoteka za citanje popravaka");
+		perror("\nDatoteka ne postoji!");
 		return;
 	}
 

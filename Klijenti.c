@@ -38,6 +38,24 @@ void sigurnoOslobodi(void** ptr) {
 	}
 }
 
+int osigurajIme(const char* ime) {
+	for (int i = 0; i < strlen(ime); i++) {
+		if (!isalpha(ime[i])) {
+			return 0; // ne istina, ime sadrzi znak koji nije slovo
+		}
+	}
+	return 1; // istina, ime sadrzi samo slova
+}
+
+int osigurajPrezime(const char* prezime) {
+	for (int i = 0; i < strlen(prezime); i++) {
+		if (!isalpha(prezime[i])) {
+			return 0; // isto kao za ime
+		}
+	}
+	return 1; // isto kao za ime
+}
+
 void unosNovogKlijenta() {
 	FILE* file = fopen("klijenti.txt", "a+");
 	if (file == NULL) {
@@ -62,23 +80,23 @@ void unosNovogKlijenta() {
 
 	// Provjera postoji li ID klijenta
 	if (postojiIDKlijenta(noviKlijent->id)) {
-		printf("\nKlijent s tim ID-om vec postoji!\n");
+		printf("\nKlijent s tim ID-om vec postoji!\n\n");
 		fclose(file);
 		free(noviKlijent);
 		return;
 	}
 
 	printf("Unesite ime: ");
-	if (scanf("%s", noviKlijent->ime) != 1) {
-		printf("Neispravan unos imena.\n");
+	if (scanf("%s", noviKlijent->ime) != 1 || !osigurajIme(noviKlijent->ime)) {
+		printf("Neispravan unos imena. Ime moze sadrzavati samo slova.\n\n");
 		fclose(file);
 		sigurnoOslobodi((void**)&noviKlijent);
 		return;
 	}
 
 	printf("Unesite prezime: ");
-	if (scanf("%s", noviKlijent->prezime) != 1) {
-		printf("Neispravan unos prezimena.\n");
+	if (scanf("%s", noviKlijent->prezime) != 1 || !osigurajPrezime(noviKlijent->prezime)) {
+		printf("Neispravan unos prezimena. Prezime moze sadrzavati samo slova.\n\n");
 		fclose(file);
 		sigurnoOslobodi((void**)&noviKlijent);
 		return;
@@ -86,7 +104,7 @@ void unosNovogKlijenta() {
 
 	printf("Unesite telefon: ");
 	if (scanf("%s", noviKlijent->telefon) != 1) {
-		printf("Neispravan unos telefona.\n");
+		printf("Neispravan unos telefona.\n\n");
 		fclose(file);
 		sigurnoOslobodi((void**)&noviKlijent);
 		return;
@@ -94,7 +112,7 @@ void unosNovogKlijenta() {
 
 	printf("Unesite email: ");
 	if (scanf("%s", noviKlijent->email) != 1) {
-		printf("Neispravan unos email-a.\n");
+		printf("Neispravan unos email-a.\n\n");
 		fclose(file);
 		sigurnoOslobodi((void**)&noviKlijent);
 		return;
@@ -112,8 +130,8 @@ void unosNovogKlijenta() {
 void ispisiKlijente() {
 	FILE* file = fopen("klijenti.txt", "r");
 	if (file == NULL) {
-		perror("Datoteka ne postoji!");
-		exit(1);
+		perror("\nDatoteka ne postoji!");
+		return;
 	}
 
 	// pomicanje pokazivaca na pocetak datoteke
@@ -126,7 +144,7 @@ void ispisiKlijente() {
 		exit(1);
 	}
 
-	printf("+----+------------------------------+------------------------------+--------------------+------------------------------+\n");
+	printf("\n+----+------------------------------+------------------------------+--------------------+------------------------------+\n");
 	printf("| ID |            Ime               |           Prezime            |      Telefon       |           Email              |\n");
 	printf("+----+------------------------------+------------------------------+--------------------+------------------------------+\n");
 
@@ -144,6 +162,7 @@ void ispisiKlijente() {
 	sigurnoOslobodi((void**)&klijent);
 	fclose(file);
 }
+
 
 int usporediKlijentePoImenu(const void* a, const void* b) {
 	const Klijent* klijentA = (const Klijent*)a;

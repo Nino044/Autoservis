@@ -7,7 +7,7 @@
 
 
 void prikaziGlavniIzbornik() {
-	printf("Odaberite opciju:\n");
+	printf("\nOdaberite opciju:\n");
 	printf("1. Opcije klijenata\n");
 	printf("2. Opcije vozila\n");
 	printf("3. Opcije popravaka\n");
@@ -17,7 +17,7 @@ void prikaziGlavniIzbornik() {
 }
 
 void prikaziIzbornikKlijenata() {
-	printf("Odaberite opciju za klijente:\n");
+	printf("\nOdaberite opciju za klijente:\n");
 	printf("1. Unos novog klijenta\n");
 	printf("2. Ispisi klijente\n");
 	printf("3. Sortiraj klijente\n");
@@ -30,7 +30,7 @@ void prikaziIzbornikKlijenata() {
 }
 
 void prikaziIzbornikVozila() {
-	printf("Odaberite opciju za vozila:\n");
+	printf("\nOdaberite opciju za vozila:\n");
 	printf("1. Unos novog vozila\n");
 	printf("2. Ispisi vozila\n");
 	printf("3. Povijest vozila\n");
@@ -43,7 +43,7 @@ void prikaziIzbornikVozila() {
 }
 
 void prikaziIzbornikPopravaka() {
-	printf("Odaberite opciju za popravke:\n");
+	printf("\nOdaberite opciju za popravke:\n");
 	printf("1. Unos novog popravka\n");
 	printf("2. Ispis popravaka\n");
 	printf("3. Pretrazi popravak po ID-u\n");
@@ -57,7 +57,7 @@ void prikaziIzbornikPopravaka() {
 
 int main() {
 	int izbor;
-	pocetak:
+pocetak:
 	do {
 		printf("1. Registracija administratora\n");
 		printf("2. Prijava administratora\n");
@@ -76,11 +76,11 @@ int main() {
 			break;
 		case 2:
 			if (globalnaPrijavaAdmin()) {
-				printf("Dobrodosli!\n\n");
+				printf("Dobrodosli!\n");
 				goto start;
 			}
 			else {
-				printf("Prijava nije uspjela.\n");
+				printf("Ne postoji registrirani admin.\n");
 			}
 			break;
 		case 3:
@@ -92,7 +92,7 @@ int main() {
 		}
 	} while (izbor != 3);
 
-	start:
+start:
 	do {
 		prikaziGlavniIzbornik();
 		while (scanf("%d", &izbor) != 1) {
@@ -134,7 +134,7 @@ int main() {
 				default:
 					printf("Neispravan odabir. Molimo odaberite ponovno.\n");
 				}
-			} while (izbor != 0 && izbor != 1 && izbor != 2 && izbor != 3 && izbor != 4 && izbor != 5 && izbor != 6 && izbor != 7);
+			} while (izbor != 0);
 			return 0;
 			break;
 
@@ -171,7 +171,7 @@ int main() {
 				default:
 					printf("Neispravan odabir. Molimo odaberite ponovno.\n");
 				}
-			} while (izbor != 0 && izbor != 1 && izbor != 2 && izbor != 3 && izbor != 4 && izbor != 5 && izbor != 6 && izbor != 7);
+			} while (izbor != 0);
 			return 0;
 			break;
 
@@ -205,7 +205,7 @@ int main() {
 				default:
 					printf("Neispravan odabir. Molimo odaberite ponovno.\n");
 				}
-			} while (izbor != 0 && izbor != 1 && izbor != 2 && izbor != 3 && izbor != 4 && izbor != 5 && izbor != 6);
+			} while (izbor != 0);
 			return 0;
 			break;
 		case 4:
