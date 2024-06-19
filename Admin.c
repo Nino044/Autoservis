@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,7 +43,7 @@ static void registracijaAdmin() {
 
     FILE* file = fopen("administratori.txt", "a");
     if (file == NULL) {
-        perror("Ne može se otvoriti datoteka za administratore");
+        perror("Ne moze se otvoriti datoteka za administratore");
         exit(1);
     }
 
@@ -80,7 +80,7 @@ static int prijavaAdmin() {
     }
 
     fclose(file);
-    printf("Neispravno korisnicko ime ili lozinka.\n");
+    printf("\nNeispravno korisnicko ime ili lozinka!\n\n");
     return 0;
 }
 
@@ -89,7 +89,7 @@ static void odjavaAdmin() {
         printf("Odjava uspjesna.\n");
         prijavljen = 0; //nakon odjave globalnu varijablu vracamo na 0
     }
-    
+
 }
 
 inline void ocistiUlazniSpremnik() {
@@ -97,7 +97,7 @@ inline void ocistiUlazniSpremnik() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-// globalne funkcije koje pozivaju statièke funkcije
+// globalne funkcije koje pozivaju statiï¿½ke funkcije
 void globalnaRegistracijaAdmin() {
     registracijaAdmin();
 }
