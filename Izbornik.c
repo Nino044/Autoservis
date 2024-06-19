@@ -46,7 +46,6 @@ void prikaziIzbornikPopravaka() {
 	printf("\nOdaberite opciju za popravke:\n");
 	printf("1. Unos novog popravka\n");
 	printf("2. Ispis popravaka\n");
-	printf("3. Pretrazi popravak po ID-u\n");
 	printf("3. Ispis ukupnih troskova popravaka\n");
 	printf("4. Ukupni trosak popravaka za odredenu godinu\n");
 	printf("5. Sortiraj popravke\n");
@@ -78,9 +77,6 @@ pocetak:
 			if (globalnaPrijavaAdmin()) {
 				printf("Dobrodosli!\n");
 				goto start;
-			}
-			else {
-				printf("Ne postoji registrirani admin.\n");
 			}
 			break;
 		case 3:
